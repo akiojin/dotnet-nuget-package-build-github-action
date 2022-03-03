@@ -20,7 +20,7 @@ async function Run(): Promise<void>
 		await exec.exec('dotnet', ['build', '--configuration', configuration, '--output', output])
 
 		if (!!publish) {
-			await exec.exec('dotnet', ['nuget', 'push', `"${output}/*.nupkg"`, '--source', source, '--api-key', apiKey])
+			await exec.exec('dotnet', ['nuget', 'push', `"${output}/*.nupkg"`, '--source', `"${source}"`, '--api-key', apiKey])
 		}
 	} catch (ex: any) {
 		core.setFailed(ex.message);

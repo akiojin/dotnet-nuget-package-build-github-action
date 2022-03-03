@@ -2878,7 +2878,7 @@ function Run() {
             }
             yield exec.exec('dotnet', ['build', '--configuration', configuration, '--output', output]);
             if (!!publish) {
-                yield exec.exec('dotnet', ['nuget', 'push', `"${output}/*.nupkg"`, '--source', source, '--api-key', apiKey]);
+                yield exec.exec('dotnet', ['nuget', 'push', `"${output}/*.nupkg"`, '--source', `"${source}"`, '--api-key', apiKey]);
             }
         }
         catch (ex) {
