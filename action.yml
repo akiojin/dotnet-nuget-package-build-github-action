@@ -1,0 +1,29 @@
+name: '.NET NuGet package build & publish GitHub action'
+description: '.NET NuGet package build & publish GitHub action'
+inputs:
+  source:
+    description: ''
+    required: true
+    default: ''
+  api-key:
+    description: 'Rquired $GITHUB_TOKEN'
+    required: true
+    default: ''
+  configuration:
+    description: ''
+    required: false
+    default: 'Debug'
+  output:
+    description: 'Default is $RUNNER_TEMP'
+    required: false
+    default: ''
+  publish:
+    description: ''
+    required: false
+    default: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  icon: "upload-cloud"
+  color: "orange"
