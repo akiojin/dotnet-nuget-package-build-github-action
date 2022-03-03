@@ -10,10 +10,10 @@ async function Run(): Promise<void>
 		const source: string = core.getInput('source')
 		const publish: boolean = core.getBooleanInput('publish')
 
-		if (apiKey === '') {
+		if (!!publish && apiKey === '') {
 			throw new Error('api-key is null')
 		}
-		if (source === '') {
+		if (!!publish && source === '') {
 			throw new Error('source is null')
 		}
 

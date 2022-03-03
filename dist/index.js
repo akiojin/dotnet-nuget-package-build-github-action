@@ -2870,10 +2870,10 @@ function Run() {
             const output = core.getInput('output') || process.env.RUNNER_TEMP || __dirname;
             const source = core.getInput('source');
             const publish = core.getBooleanInput('publish');
-            if (apiKey === '') {
+            if (!!publish && apiKey === '') {
                 throw new Error('api-key is null');
             }
-            if (source === '') {
+            if (!!publish && source === '') {
                 throw new Error('source is null');
             }
             yield exec.exec('dotnet', ['build', '--configuration', configuration, '--output', output]);

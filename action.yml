@@ -3,11 +3,11 @@ description: '.NET NuGet package build & publish GitHub action'
 inputs:
   source:
     description: ''
-    required: true
+    required: false
     default: ''
   api-key:
     description: 'Rquired $GITHUB_TOKEN'
-    required: true
+    required: false
     default: ''
   configuration:
     description: ''
