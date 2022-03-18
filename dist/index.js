@@ -2986,29 +2986,18 @@ const argument_builder_1 = __nccwpck_require__(883);
 function Run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const apiKey = core.getInput('api-key');
             const output = core.getInput('output');
-            const source = core.getInput('source');
-            const publish = core.getBooleanInput('publish');
-            if (!!publish) {
-                if (apiKey === '') {
-                    throw new Error('api-key is null');
-                }
-                if (source === '') {
-                    throw new Error('source is null');
-                }
-            }
             const builder = new argument_builder_1.ArgumentBuilder();
             builder.Append('build');
             builder.Append('--configuration', core.getInput('configuration'));
             builder.Append('--output', output);
             yield exec.exec('dotnet', builder.Build());
-            if (!!publish) {
+            if (!!core.getBooleanInput('publish')) {
                 const builder = new argument_builder_1.ArgumentBuilder();
                 builder.Append('nuget', 'push');
                 builder.Append(`${output}/*.nupkg`);
-                builder.Append('--source', `"${source}"`);
-                builder.Append('--api-key', apiKey);
+                builder.Append('--source', `"${core.getInput('source')}"`);
+                builder.Append('--api-key', core.getInput('api-key'));
                 yield exec.exec('dotnet', builder.Build());
             }
         }

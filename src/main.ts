@@ -5,19 +5,7 @@ import { ArgumentBuilder } from '@akiojin/argument-builder'
 async function Run(): Promise<void> 
 {
 	try {
-		const apiKey = core.getInput('api-key')
 		const output = core.getInput('output')
-		const source = core.getInput('source')
-		const publish = core.getBooleanInput('publish')
-
-		if (!!publish) {
-			if (apiKey === '') {
-				throw new Error('api-key is null')
-			}
-			if (source === '') {
-				throw new Error('source is null')
-			}
-		}
 
 		const builder = new ArgumentBuilder()
 		builder.Append('build')
@@ -26,12 +14,12 @@ async function Run(): Promise<void>
 
 		await exec.exec('dotnet', builder.Build())
 
-		if (!!publish) {
+		if (!!core.getBooleanInput('publish')) {
 			const builder = new ArgumentBuilder()
 			builder.Append('nuget', 'push')
 			builder.Append(`${output}/*.nupkg`)
-			builder.Append('--source', `"${source}"`)
-			builder.Append('--api-key', apiKey)
+			builder.Append('--source', `"${core.getInput('source')}"`)
+			builder.Append('--api-key', core.getInput('api-key'))
 
 			await exec.exec('dotnet', builder.Build())
 		}
