@@ -29,7 +29,7 @@ async function Run(): Promise<void>
 		if (!!publish) {
 			const builder = new ArgumentBuilder()
 			builder.Append('nuget', 'push')
-			builder.Append(`"${output}/*.nupkg"`)
+			builder.Append(`${output}/*.nupkg`)
 			builder.Append('--source', `"${source}"`)
 			builder.Append('--api-key', apiKey)
 

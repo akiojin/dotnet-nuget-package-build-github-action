@@ -3006,7 +3006,7 @@ function Run() {
             if (!!publish) {
                 const builder = new argument_builder_1.ArgumentBuilder();
                 builder.Append('nuget', 'push');
-                builder.Append(`"${output}/*.nupkg"`);
+                builder.Append(`${output}/*.nupkg`);
                 builder.Append('--source', `"${source}"`);
                 builder.Append('--api-key', apiKey);
                 yield exec.exec('dotnet', builder.Build());
