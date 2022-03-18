@@ -8,7 +8,7 @@ inputs:
   api-key:
     description: 'Rquired $GITHUB_TOKEN'
     required: false
-    default: ''
+    default: ${{ github.token }}
   configuration:
     description: ''
     required: false
@@ -16,7 +16,7 @@ inputs:
   output:
     description: 'Default is $RUNNER_TEMP'
     required: false
-    default: ''
+    default: ${{ runner.temp }}
   publish:
     description: ''
     required: false
