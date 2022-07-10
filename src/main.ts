@@ -44,7 +44,7 @@ class DotNet
 		const builder = new ArgumentBuilder()
 			.Append('nuget', 'push')
 			.Append(`${output}/*.nupkg`)
-			.Append('--source', `"${source}"`)
+			.Append('--source', `${source}`)
 			.Append('--api-key', apiKey)
 
 		return exec.exec('dotnet', builder.Build())
