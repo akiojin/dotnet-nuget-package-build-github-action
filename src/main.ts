@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
+import path from 'path'
 import { ArgumentBuilder } from '@akiojin/argument-builder'
 
 class DotNet
@@ -43,7 +44,7 @@ class DotNet
 	{
 		const builder = new ArgumentBuilder()
 			.Append('nuget', 'push')
-			.Append(`${output}/*.nupkg`)
+			.Append(path.join(output, '*.nupkg'))
 			.Append('--source', `${source}`)
 			.Append('--api-key', apiKey)
 
